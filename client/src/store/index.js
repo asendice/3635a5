@@ -6,8 +6,6 @@ import user from "./user";
 import conversations from "./conversations";
 import activeConversation from "./activeConversation";
 
-import { composeWithDevTools } from "redux-devtools-extension";
-
 const CLEAR_ON_LOGOUT = "CLEAR_ON_LOGOUT";
 
 export const clearOnLogout = () => {
@@ -29,4 +27,4 @@ const rootReducer = (state, action) => {
   return appReducer(state, action);
 };
 
-export default createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware, loggerMiddleware)));
+export default createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
