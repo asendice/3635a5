@@ -10,10 +10,11 @@ import {
   TextField,
   FormHelperText,
 } from "@material-ui/core";
-import { register } from "./store/utils/thunkCreators";
+import { register } from "../../store/utils/thunkCreators";
+import SideBanner from "./SideBanner";
+import Header from "./Header";
 
 const Login = (props) => {
-  const history = useHistory();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -38,11 +39,9 @@ const Login = (props) => {
 
   return (
     <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
-        </Grid>
+      <SideBanner />
+      <Grid md={8}>
+        <Header text="Already have an account?" btnText="Login" route="login" />
         <form onSubmit={handleRegister}>
           <Grid>
             <Grid>
@@ -102,7 +101,7 @@ const Login = (props) => {
             </Button>
           </Grid>
         </form>
-      </Box>
+      </Grid>
     </Grid>
   );
 };

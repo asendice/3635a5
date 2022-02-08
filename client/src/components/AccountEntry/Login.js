@@ -3,15 +3,25 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
   TextField,
 } from "@material-ui/core";
-import { login } from "./store/utils/thunkCreators";
+import { login } from "../../store/utils/thunkCreators";
+import SideBanner from "./SideBanner";
+import Header from "./Header";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  formContainer: {
+
+  },
+
+}))
 
 const Login = (props) => {
+  const classes = useStyles();
   const history = useHistory();
   const { user, login } = props;
 
@@ -28,19 +38,21 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
+    <Grid container>
+      <SideBanner />
+      <Grid sm={8} className={classes.formContainer} >
+        <Header
+          text="Don't have an account?"
+          btnText="Create Account"
+          route="register"
+         />
         <form onSubmit={handleLogin}>
           <Grid>
             <Grid>
               <FormControl margin="normal" required>
                 <TextField
                   aria-label="username"
-                  label="Username"
+                  label="E-mail address"
                   name="username"
                   type="text"
                 />
@@ -49,7 +61,7 @@ const Login = (props) => {
             <FormControl margin="normal" required>
               <TextField
                 label="password"
-                aria-label="password"
+                aria-label="Password"
                 type="password"
                 name="password"
               />
@@ -61,7 +73,7 @@ const Login = (props) => {
             </Grid>
           </Grid>
         </form>
-      </Box>
+      </Grid>
     </Grid>
   );
 };
