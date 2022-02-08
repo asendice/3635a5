@@ -40,7 +40,7 @@ const Login = (props) => {
   return (
     <Grid container>
       <SideBanner />
-      <Grid sm={8} className={classes.formContainer} >
+      <Grid xs={12} sm={8}>
         <Header
           text="Don't have an account?"
           btnText="Create Account"
