@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "47%",
+    marginTop: 250,
   },
   icon: {
     width: 86,

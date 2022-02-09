@@ -3,10 +3,12 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
+  Box,
   Typography,
   Button,
   FormControl,
   TextField,
+  InputAdornment,
 } from "@material-ui/core";
 import { login } from "../../store/utils/thunkCreators";
 import SideBanner from "./SideBanner";
@@ -14,15 +16,49 @@ import Header from "./Header";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
-  formContainer: {
-
+  formContent: {
+    height: 500,
+    width: 700,
+    maxWidth: "80%",
+    margin: "auto",
+    marginTop: 120,
   },
-
-}))
+  formControl: {
+    width: "100%",
+  },
+  input: {
+    padding: "10px 0px",
+  },
+  header: {
+    fontSize: 40,
+    fontWeight: 600,
+  },
+  inputContainer: {
+    marginTop: 20,
+  },
+  adornment: {
+    color: "#3A8DFF",
+    cursor: "pointer",
+    fontSize: 16,
+  },
+  btnContainer: {
+    marginTop: 50,
+    display: "flex",
+    justifyContent: "center",
+  },
+  btn: {
+    backgroundColor: "#3A8DFF",
+    color: "#fff",
+    width: 160,
+    height: 56,
+    borderRadius: "3px",
+    fontWeight: 700,
+    fontSize: 16,
+  },
+}));
 
 const Login = (props) => {
   const classes = useStyles();
-  const history = useHistory();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -45,29 +81,70 @@ const Login = (props) => {
           text="Don't have an account?"
           btnText="Create Account"
           route="register"
-         />
+        />
         <form onSubmit={handleLogin}>
-          <Grid>
+          <Grid className={classes.formContent}>
+            <Typography className={classes.header}>Welcome back!</Typography>
             <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="E-mail address"
-                  name="username"
-                  type="text"
-                />
+              <FormControl
+                margin="normal"
+                required
+                className={classes.formControl}
+              >
+                <Box className={classes.inputContainer}>
+                  <TextField
+                    aria-label="username"
+                    label="E-mail address"
+                    name="username"
+                    type="text"
+                    fullWidth
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { fontSize: 24, color: "#B0B0B0" },
+                    }}
+                  />
+                </Box>
               </FormControl>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="Password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
             <Grid>
-              <Button type="submit" variant="contained" size="large">
+              <FormControl
+                margin="normal"
+                required
+                className={classes.formControl}
+              >
+                <Box className={classes.inputContainer}>
+                  <TextField
+                    label="Password"
+                    aria-label="Password"
+                    type="password"
+                    name="password"
+                    fullWidth
+                    InputProps={{
+                      className: classes.input,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <a className={classes.adornment}>Forgot?</a>
+                        </InputAdornment>
+                      ),
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { fontSize: 24, color: "#B0B0B0" },
+                    }}
+                  />
+                </Box>
+              </FormControl>
+            </Grid>
+            <Grid className={classes.btnContainer}>
+              <Button
+                className={classes.btn}
+                type="submit"
+                variant="contained"
+                size="large"
+              >
                 Login
               </Button>
             </Grid>
