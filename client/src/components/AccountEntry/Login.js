@@ -18,7 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
   formContent: {
     height: 500,
-    width: 700,
+    width: 650,
     maxWidth: "80%",
     margin: "auto",
     marginTop: 120,
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     width: "100%",
   },
   input: {
-    padding: "10px 0px",
+    padding: "10px 5px",
   },
   header: {
     fontSize: 40,

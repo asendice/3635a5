@@ -13,8 +13,52 @@ import {
 import { register } from "../../store/utils/thunkCreators";
 import SideBanner from "./SideBanner";
 import Header from "./Header";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  formContent: {
+    height: 500,
+    width: 650,
+    maxWidth: "80%",
+    margin: "auto",
+    marginTop: 120,
+  },
+  formControl: {
+    width: "100%",
+  },
+  input: {
+    padding: "10px 5px",
+  },
+  header: {
+    fontSize: 40,
+    fontWeight: 600,
+  },
+  inputContainer: {
+    marginTop: 20,
+  },
+  adornment: {
+    color: "#3A8DFF",
+    cursor: "pointer",
+    fontSize: 16,
+  },
+  btnContainer: {
+    marginTop: 50,
+    display: "flex",
+    justifyContent: "center",
+  },
+  btn: {
+    backgroundColor: "#3A8DFF",
+    color: "#fff",
+    width: 160,
+    height: 56,
+    borderRadius: "3px",
+    fontWeight: 700,
+    fontSize: 16,
+  },
+}));
 
 const Login = (props) => {
+  const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -38,67 +82,100 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
+    <Grid container>
       <SideBanner />
-      <Grid md={8}>
+      <Grid xs={12} sm={8}>
         <Header text="Already have an account?" btnText="Login" route="login" />
         <form onSubmit={handleRegister}>
-          <Grid>
+          <Grid className={classes.formContent}>
+            <Typography className={classes.header}>
+              Create an account.
+            </Typography>
             <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
+              <FormControl
+                margin="normal"
+                required
+                className={classes.formControl}
+              >
+                <Box className={classes.inputContainer}>
+                  <TextField
+                    aria-label="username"
+                    label="Username"
+                    name="username"
+                    type="text"
+                    fullWidth
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { fontSize: 24, color: "#B0B0B0" },
+                    }}
+                  />
+                </Box>
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
+              <FormControl
+                margin="normal"
+                required
+                className={classes.formControl}
+              >
+                <Box className={classes.inputContainer}>
+                  <TextField
+                    label="E-mail address"
+                    aria-label="e-mail address"
+                    type="email"
+                    name="email"
+                    fullWidth
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { fontSize: 24, color: "#B0B0B0" },
+                    }}
+                  />
+                </Box>
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
+              <FormControl
+                error={!!formErrorMessage.confirmPassword}
+                className={classes.formControl}
+              >
+                <Box className={classes.inputContainer}>
+                  <TextField
+                    aria-label="password"
+                    label="Password"
+                    type="password"
+                    inputProps={{ minLength: 6 }}
+                    name="password"
+                    fullWidth
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { fontSize: 24, color: "#B0B0B0" },
+                    }}
+                  />
+                </Box>
                 <FormHelperText>
                   {formErrorMessage.confirmPassword}
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
+            <Grid className={classes.btnContainer}>
+              <Button
+                className={classes.btn}
+                type="submit"
+                variant="contained"
+                size="large"
+              >
+                Create
+              </Button>
             </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
           </Grid>
         </form>
       </Grid>
