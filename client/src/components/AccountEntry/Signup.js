@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 600,
   },
   inputContainer: {
-    marginTop: 20,
+    marginTop: 30,
   },
   adornment: {
     color: "#3A8DFF",
