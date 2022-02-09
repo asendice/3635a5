@@ -17,7 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   formContent: {
-    height: 500,
+    height: 600,
     width: 650,
     maxWidth: "80%",
     margin: "auto",
