@@ -26,23 +26,29 @@ const useStyles = makeStyles(() => ({
     color: "#fff",
     fontSize: 35,
     textAlign: "center",
-    padding: "10px 50px"
-  }
-}))
+    padding: "10px 50px",
+  },
+}));
 
 const SideBanner = () => {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.root} xs={12} sm={4}>
+    <Box
+      component={Grid}
+      item
+      className={classes.root}
+      sx={{ display: { xs: "none", sm: "block" } }}
+      sm={4}
+    >
       <Box className={classes.content}>
         <img src={bubble} alt="chat icon" className={classes.icon} />
         <Typography className={classes.text}>
           Converse with anyone with any language
         </Typography>
       </Box>
-    </Grid>
-  )
-}
+    </Box>
+  );
+};
 
 export default SideBanner;

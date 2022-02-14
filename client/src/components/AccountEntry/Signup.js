@@ -84,7 +84,7 @@ const Login = (props) => {
   return (
     <Grid container>
       <SideBanner />
-      <Grid xs={12} sm={8}>
+      <Grid item xs={12} sm={8}>
         <Header text="Already have an account?" btnText="Login" route="login" />
         <form onSubmit={handleRegister}>
           <Grid className={classes.formContent}>
