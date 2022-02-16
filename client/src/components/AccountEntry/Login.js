@@ -76,7 +76,7 @@ const Login = (props) => {
   return (
     <Grid container>
       <SideBanner />
-      <Grid xs={12} sm={8}>
+      <Grid item xs={12} sm={8}>
         <Header
           text="Don't have an account?"
           btnText="Create Account"
