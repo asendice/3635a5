@@ -98,6 +98,7 @@ const sendMessage = (data, body) => {
 // message format to send: {recipientId, text, conversationId}
 // conversationId will be set to null if its a brand new conversation
 export const postMessage = (body) => async (dispatch) => {
+  console.log(body, 'body')
   try {
     const data = await saveMessage(body);
     if (!body.conversationId) {
@@ -110,6 +111,25 @@ export const postMessage = (body) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const uploadImagesCloudinary = async (images) => {
+  const urls = images.map(async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "bznefvug");
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dbdb0pjbw/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await response.json();
+    const url = await data.url;
+    return url;
+  });
+  return await Promise.all(urls);
 };
 
 export const searchUsers = (searchTerm) => async (dispatch) => {
