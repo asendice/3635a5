@@ -44,6 +44,7 @@ const Input = (props) => {
     };
     await postMessage(reqBody);
     setText("");
+    setImages([]);
   };
 
   return (
