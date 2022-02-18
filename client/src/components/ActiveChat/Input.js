@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput } from "@material-ui/core";
+import { FormControl, FilledInput, InputAdornment } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { postMessage, uploadImagesCloudinary } from "../../store/utils/thunkCreators";
+import {
+  postMessage,
+  uploadImagesCloudinary,
+} from "../../store/utils/thunkCreators";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,6 +18,14 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
     marginBottom: 20,
+    padding: "0 10px"
+  },
+  fileIcon: {
+    color: "#777",
+    cursor: "pointer"
+  },
+  hiddenInput: {
+    display: "none",
   },
 }));
 
@@ -57,8 +69,23 @@ const Input = (props) => {
           value={text}
           name="text"
           onChange={handleChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <div>
+                <label for="file-input">
+                  <FileCopyIcon className={classes.fileIcon} />
+                </label>
+                <input
+                  className={classes.hiddenInput}
+                  name="images"
+                  id="file-input"
+                  type="file"
+                  onChange={handleImages}
+                />
+              </div>
+            </InputAdornment>
+          }
         />
-        <input name="images" type="file" onChange={handleImages} />
       </FormControl>
     </form>
   );
