@@ -51,10 +51,10 @@ const OtherUserBubble = (props) => {
           {otherUser.username} {time}
         </Typography>
         <Box className={classes.imgBubble}>
-          {urls.length > 0 && <ImageBubble urls={urls} />}
+          {urls && urls.length > 0 && <ImageBubble urls={urls} />}
         </Box>
         <Box className={classes.bubble}>
-          {text.length > 0 && (
+          {text && text.length > 0 && (
             <Typography className={classes.text}>{text}</Typography>
           )}
         </Box>
