@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, InputAdornment } from "@material-ui/core";
+import { FormControl, FilledInput, InputAdornment, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import {
@@ -72,7 +72,7 @@ const Input = (props) => {
           onChange={handleChange}
           endAdornment={
             <InputAdornment position="end">
-              <div>
+              <Box>
                 <label for="file-input">
                   <FileCopyIcon className={classes.fileIcon} />
                 </label>
@@ -83,7 +83,7 @@ const Input = (props) => {
                   type="file"
                   onChange={handleImages}
                 />
-              </div>
+              </Box>
             </InputAdornment>
           }
         />
