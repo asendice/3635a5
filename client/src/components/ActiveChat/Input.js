@@ -33,7 +33,7 @@ const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
   const [images, setImages] = useState([]);
-  const { postMessage, otherUser, conversationId, user } = props;
+  const { postMessage, uploadImagesCloudinary, otherUser, conversationId, user } = props;
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -95,7 +95,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     postMessage: (message) => {
       dispatch(postMessage(message));
-    }
+    },
+    uploadImagesCloudinary: (images) => uploadImagesCloudinary(images),
   };
 };
 
