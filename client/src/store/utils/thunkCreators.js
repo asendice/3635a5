@@ -117,7 +117,7 @@ export const uploadImagesCloudinary = async (images) => {
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "bznefvug");
-    // creating instance avoids CORS errror
+    // creating instance corrects CORS errror
     const instance = axios.create();
     const { data } = await instance.post("https://api.cloudinary.com/v1_1/dbdb0pjbw/image/upload", formData);
     return data.url;
