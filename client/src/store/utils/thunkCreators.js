@@ -112,6 +112,19 @@ export const postMessage = (body) => async (dispatch) => {
   }
 };
 
+export const uploadImagesCloudinary = async (images) => {
+  const urls = images.map(async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "bznefvug");
+    // creating instance corrects CORS errror
+    const instance = axios.create();
+    const { data } = await instance.post("https://api.cloudinary.com/v1_1/dbdb0pjbw/image/upload", formData);
+    return data.url;
+  });
+  return await Promise.all(urls);
+};
+
 export const searchUsers = (searchTerm) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/users/${searchTerm}`);
